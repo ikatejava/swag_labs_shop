@@ -1,0 +1,112 @@
+plugins {
+    id 'java-library'
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+group = 'com.saucedemo'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+def selenideVersion = "6.17.2",
+    jUnitJupiterVersion = "5.10.0",
+    allureSelenideVersion = "2.24.0",
+    slf4jSimpleVersion = "2.0.7",
+    ownerVersion = "1.0.12",
+    javaFakerVersion = "1.0.2"
+
+dependencies {
+    testImplementation(
+            "com.codeborne:selenide:$selenideVersion",
+            "org.junit.jupiter:junit-jupiter:$jUnitJupiterVersion",
+            "io.qameta.allure:allure-selenide:$allureSelenideVersion",
+            "org.slf4j:slf4j-simple:$slf4jSimpleVersion",
+            "org.aeonbits.owner:owner:$ownerVersion",
+            "com.github.javafaker:javafaker:$javaFakerVersion")
+}
+
+allure {
+    report {
+        version.set(allureSelenideVersion)
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set(allureSelenideVersion)
+            }
+        }
+    }
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+task login_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("login")
+    }
+}
+
+task add_to_cart_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("add_to_cart")
+    }
+}
+
+task remove_from_cart_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("remove_from_cart")
+    }
+}
+
+task remove_on_inventory_page_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("remove_in_the_shop")
+    }
+}
+
+task remove_in_the_cart_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("remove_in_the_cart")
+    }
+}
+
+task smoke_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("smoke")
+    }
+}
+
+task positive_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("positive")
+    }
+}
+
+task negative_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("negative")
+    }
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+
