@@ -11,7 +11,7 @@ public class ErrorMessagePage {
             errorMessage = $(".error-message-container");
 
     public void checkErrorMessage(String message) {
+
         errorMessage.shouldBe(visible).shouldHave(text(message));
     }
-
 }
