@@ -23,7 +23,7 @@ public class InventoryPage {
     }
 
     public void clickAddToCart(String productAddToCart) {
-        $(byName(productAddToCart)).shouldBe(visible).click();
+        $(byName(productAddToCart)).click();
     }
 
     public void clickCartIcon() {

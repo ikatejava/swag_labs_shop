@@ -40,6 +40,7 @@ public class TestBase {
         Configuration.pageLoadStrategy = "eager";
         Configuration.holdBrowserOpen = false;
         Configuration.pollingInterval = 400;
+        Configuration.timeout = 4000;
         Configuration.baseUrl = config.baseUrl();
         Configuration.browser = config.browser();
         Configuration.browserSize = config.browserSize();
@@ -59,7 +60,6 @@ public class TestBase {
     void beforeEach() {
         open(baseUrl);
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        Configuration.timeout = 4000;
     }
 
     @AfterEach

@@ -17,7 +17,6 @@ public class FinalPage {
     }
 
     public void checkBackHomeButtonPresence() {
-
         backHomeButton.shouldBe(visible).shouldBe(interactable);
     }
 
