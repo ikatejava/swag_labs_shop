@@ -12,7 +12,6 @@ import static io.qameta.allure.Allure.step;
 
 public class LoginTests extends TestBase {
 
-
     @CsvSource(value = {"standard_user | secret_sauce | Products",
             "problem_user | secret_sauce | Products",
             "performance_glitch_user | secret_sauce | Products"

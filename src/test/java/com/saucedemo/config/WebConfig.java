@@ -17,7 +17,7 @@ public interface WebConfig extends Config {
     String browserSize();
 
     @Key("baseUrl")
-    @DefaultValue("https://www.saucedemo.com/")
+    @DefaultValue("https://www.saucedemo.com")
     String baseUrl();
 
     @Key("remoteUrl")
